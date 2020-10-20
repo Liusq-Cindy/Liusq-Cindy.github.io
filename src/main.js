@@ -3,22 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import showdown from 'showdown'// 引入md文件
 
 Vue.config.productionTip = false
-
-// 使用md文件
-Vue.prototype.md2html = (md) => {
-  let converter = new showdown.Converter()
-  let text = md.toString()
-  let html = converter.makeHtml(text)
-  return html
-}
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
+  router, // 把路由注入到根实例中，启动路由
   components: { App },
   template: '<App/>'
 })

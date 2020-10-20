@@ -1,5 +1,6 @@
-# liusq-cindy
+# vue-project
 
+# 这是一个空白的vue项目，可直接拉取进行开发
 > A Vue.js project
 
 ## Build Setup
@@ -16,9 +17,6 @@ npm run build
 
 # build for production and view the bundle analyzer report
 npm run build --report
-
-# run unit tests
-npm run unit
 
 # run e2e tests
 npm run e2e

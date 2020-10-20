@@ -1,21 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import postIndex from '@/components/posts/index'
+import blank from '@/components/blank'
 
-Vue.use(Router)
-
+Vue.use(Router) // 告诉vue使用vue-router
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
-    {
-      path: '/post',
-      name: 'postIndex',
-      component: postIndex
+      path: '/blank',
+      name: 'blank',
+      component: blank
     }
   ]
 })
