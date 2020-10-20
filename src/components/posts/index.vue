@@ -1,28 +1,28 @@
 <template>
-  <div class="hello">
+  <div class="hello markdown-body">
     <!-- <h1>{{ msg }}</h1> -->
     <h1>如何将前端代码写的优雅？</h1>
     <h5>{{ msg }}</h5>
-    <div v-html="Readme" style="padding: 20px;"></div>
+    <!-- <div v-html="Readme" style="padding: 20px;"></div> -->
+    <Readme></Readme>
   </div>
 </template>
 
 <script>
 
-// import 'highlight.js/styles/github.css'
-// import 'highlight.js/styles/foundation.css'
+import 'highlight.js/styles/github.css'
 import 'github-markdown-css'
 import Readme from './test.md'// 引入md文件
 
 export default {
   name: 'HelloWorld',
   components: {
-    // Readme
+    Readme
   },
   data () {
     return {
-      msg: '个人博客：Liusq-Cindy',
-      Readme
+      msg: '个人博客：Liusq-Cindy'
+      // Readme
     }
   }
 }
@@ -32,5 +32,9 @@ export default {
 <style scoped>
 h1, h2 {
   font-weight: normal;
+}
+.hello {
+  text-align: left;
+  padding: 20px;
 }
 </style>

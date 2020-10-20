@@ -1,6 +1,6 @@
 <template>
-  <div id="app" class = "markdown-body">
-    <div>ceshi</div>
+  <div id="app" class="markdown-body">
+    <!-- <div>ceshi</div> -->
     <router-view/>
   </div>
 </template>
