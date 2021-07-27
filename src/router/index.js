@@ -1,21 +1,26 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import VueRouter from 'vue-router'
+import home from '@/pages/home/index'
 import postIndex from '@/components/posts/index'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
-    {
-      path: '/post',
-      name: 'postIndex',
-      component: postIndex
-    }
-  ]
+const routes = [
+  {
+    path: '/',
+    name: 'home',
+    component: home
+  },
+  {
+    path: '/post',
+    name: 'postIndex',
+    component: postIndex
+  }
+]
+
+const router = new VueRouter({
+  mode: 'history',
+  routes
 })
+
+export default router

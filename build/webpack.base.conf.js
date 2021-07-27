@@ -96,6 +96,10 @@ module.exports = {
           return Source;
         }
       }
+    },
+    {
+      test: /\.less$/,
+      loader: 'style-loader!css-loader!less-loader'
     }
 
     ]
