@@ -1,8 +1,9 @@
 <template>
   <div class="page-content">
    <we-header></we-header>
-   <first-page-content></first-page-content>
-   <we-footer></we-footer>
+   <router-view></router-view>
+   <first-page-content v-if="isHome"></first-page-content>
+   <we-footer v-if="isHome"></we-footer>
   </div>
 </template>
 
@@ -20,13 +21,16 @@ export default {
   },
   data () {
     return {
-      msg: 'Welcome to Liusq-Cindy’s Blog'
+      isHome: this.$route.path === '/'
     }
   },
   methods: {
     clickTopage () {
       this.$router.push('/post')
     }
+  },
+  created () {
+    console.log('this.$route.path', this.$route.path === '/')
   }
 }
 </script>

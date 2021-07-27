@@ -1,6 +1,7 @@
 <template>
   <div class="we-header">
-    <div class="header-left">
+   <div class="header-content">
+    <div class="header-left" @click="trunToPage('home')">
      <i class="el-icon-user" style="font-size: 22px;"></i>
      <span>阿溜的主页</span>
     </div>
@@ -30,6 +31,7 @@
      </el-dropdown>
      <span class="right-item link" @click="trunToPage('github')">github主页</span>
     </div>
+   </div>
   </div>
 </template>
 
@@ -46,6 +48,9 @@ export default {
     trunToPage (page) {
       console.log('页面跳转', page)
       switch (page) {
+        case 'home':
+          this.$router.push('/')
+          break
         case 'blog':
           this.$router.push('/post')
           break
@@ -71,6 +76,12 @@ export default {
 
 <style scoped lang="less">
 .we-header {
+ display: block;
+ padding-top: 56px;
+ width: 100%;
+ .header-content {
+  position: fixed;
+  top: 0;
   background: #FFF;
   box-shadow: 2px 0 10px #ccc;
   height: 56px;
@@ -79,6 +90,7 @@ export default {
   width: 100%;
   justify-content: space-between;
   padding: 0 16px;
+ }
   .header-left {
     cursor: pointer;
     img {

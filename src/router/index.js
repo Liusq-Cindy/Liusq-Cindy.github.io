@@ -9,13 +9,18 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: home
-  },
-  {
-    path: '/post',
-    name: 'postIndex',
-    component: postIndex
+    component: home,
+    children: [{
+      path: '/post',
+      name: 'postIndex',
+      component: postIndex
+    }]
   }
+  // {
+  //   path: '/post',
+  //   name: 'postIndex',
+  //   component: postIndex
+  // }
 ]
 
 const router = new VueRouter({
