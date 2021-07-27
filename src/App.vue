@@ -1,6 +1,5 @@
 <template>
   <div id="app" class="markdown-body">
-    <!-- <div>ceshi</div> -->
     <router-view/>
   </div>
 </template>
@@ -19,5 +18,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100%;
 }
 </style>

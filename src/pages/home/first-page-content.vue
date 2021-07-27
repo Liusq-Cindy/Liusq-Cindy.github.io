@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="first-page-content">
     <h1>{{ msg }}</h1>
     <h2>博客文章</h2>
     <ul>
@@ -13,10 +13,7 @@
 <script>
 
 export default {
-  name: 'HelloWorld',
-  components: {
-    // Readme
-  },
+  name: 'FirstPageContent',
   data () {
     return {
       msg: 'Welcome to Liusq-Cindy’s Blog'
@@ -30,20 +27,24 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+<style scoped lang='less'>
+.first-page-content {
+ flex-grow: 1;
+ background: rgb(252, 248, 248);
+ padding-top: 44px;
+  h1, h2 {
+   font-weight: normal;
+ }
+ ul {
+   list-style-type: none;
+   padding: 0;
+ }
+ li {
+   display: inline-block;
+   margin: 0 10px;
+ }
+ a {
+   color: #42b983;
+ }
 }
 </style>

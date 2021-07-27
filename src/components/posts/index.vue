@@ -1,5 +1,5 @@
 <template>
-  <div class="hello markdown-body">
+  <div class="markdown-body">
     <!-- <h1>{{ msg }}</h1> -->
     <h1>如何将前端代码写的优雅？</h1>
     <h5>{{ msg }}</h5>
@@ -32,9 +32,5 @@ export default {
 <style scoped>
 h1, h2 {
   font-weight: normal;
-}
-.hello {
-  text-align: left;
-  padding: 20px;
 }
 </style>

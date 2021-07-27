@@ -1,23 +1,22 @@
 <template>
-  <div class="hello">
+  <div class="page-content">
    <we-header></we-header>
-    <!-- <h1>{{ msg }}</h1> -->
-    <!-- <h2>博客文章</h2> -->
-    <!-- <ul>
-      <li @click="clickTopage()">
-        如何将前端代码写的优雅？
-      </li>
-    </ul> -->
+   <first-page-content></first-page-content>
+   <we-footer></we-footer>
   </div>
 </template>
 
 <script>
 
 import WeHeader from '@/components/layouts/header.vue'
+import WeFooter from '@/components/layouts/footer.vue'
+import FirstPageContent from './first-page-content.vue'
 export default {
   name: 'HelloWorld',
   components: {
-    WeHeader
+    WeHeader,
+    WeFooter,
+    FirstPageContent
   },
   data () {
     return {
@@ -34,18 +33,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.page-content {
+ height: 100%;
+ display: flex;
+ flex-direction: column;
 }
 </style>
