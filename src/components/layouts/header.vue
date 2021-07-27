@@ -52,7 +52,7 @@ export default {
           this.$router.push('/')
           break
         case 'blog':
-          this.$router.push('/post')
+          this.$router.push('/blog')
           break
         case 'basic':
           this.$router.push('/basicMsg')

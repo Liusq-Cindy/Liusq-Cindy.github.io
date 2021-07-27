@@ -2,8 +2,8 @@
   <div class="page-content">
    <we-header></we-header>
    <router-view></router-view>
-   <first-page-content v-if="isHome"></first-page-content>
-   <we-footer v-if="isHome"></we-footer>
+   <first-page-content v-if="this.$route.path === '/'"></first-page-content>
+   <we-footer v-if="this.$route.path === '/'"></we-footer>
   </div>
 </template>
 
@@ -21,7 +21,6 @@ export default {
   },
   data () {
     return {
-      isHome: this.$route.path === '/'
     }
   },
   methods: {
