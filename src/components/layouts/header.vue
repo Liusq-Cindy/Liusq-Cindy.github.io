@@ -1,10 +1,30 @@
 <template>
   <div class="we-header">
     <div class="header-left">
-     ces
+     <img src="../../assets/logo.png" alt="">
+     <!-- <span>阿溜的主页</span> -->
     </div>
     <div class="header-right">
-     右
+     <el-button type="primary" plain>站内博文</el-button>
+     <el-dropdown>
+       <span class="el-dropdown-link">
+         三方博客主页<i class="el-icon-arrow-down el-icon--right"></i>
+       </span>
+       <el-dropdown-menu slot="dropdown">
+         <el-dropdown-item>CSDN博客</el-dropdown-item>
+         <el-dropdown-item>掘金</el-dropdown-item>
+       </el-dropdown-menu>
+     </el-dropdown>
+     <el-dropdown>
+       <span class="el-dropdown-link">
+         我的信息<i class="el-icon-arrow-down el-icon--right"></i>
+       </span>
+       <el-dropdown-menu slot="dropdown">
+         <el-dropdown-item>基础信息</el-dropdown-item>
+         <el-dropdown-item>兴趣爱好</el-dropdown-item>
+       </el-dropdown-menu>
+     </el-dropdown>
+     <el-button type="primary" plain>github主页</el-button>
     </div>
   </div>
 </template>
@@ -27,49 +47,28 @@ export default {
 
 <style scoped lang="less">
 .we-header {
-  background: #cad5e9;
+  background: rgba(87, 146, 230, 0.2);
   // background-image: linear-gradient(-135deg,#cad5e9 100%,#d3dae6 0);
-  height: 44px;
-  line-height: 44px;
+  height: 56px;
+  line-height: 56px;
   display: flex;
   width: 100%;
   justify-content: space-between;
-  &.hide-header {
-    display: none;
-  }
-  .el-dropdown-link {
-    color: #fff;
-  }
   .header-left {
-    .logo {
-      cursor: pointer;
-      img {
-        vertical-align: text-top;
-        margin-left: 15px;
-        // margin-right: 5px;
-        margin-top: -3px;
-        width: 67px;
-        height: 24px;
-      }
-      span {
-        font-size: 14px;
-        display: inline-block;
-        padding-left: 15px;
-        line-height: 14px;
-        // &:last-child {
-        //   border-left: 1px solid @white2;
-        // }
-      }
-      .el-icon-arrow-left {
-        font-size: 12px;
-        font-style: normal;
-        padding: 0 8px;
-      }
-      .el-dropdown-link__text {
-        font-size: 16px;
-        padding: 0 15px;
-        border-right: 1px solid #fff;
-      }
+    cursor: pointer;
+    img {
+      vertical-align: text-top;
+      margin-left: 15px;
+      // margin-right: 5px;
+      margin-top: -3px;
+      width: 67px;
+      height: 24px;
+    }
+    span {
+      font-size: 18px;
+      display: inline-block;
+      padding-left: 15px;
+      line-height: 14px;
     }
   }
   .header-right {

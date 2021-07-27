@@ -4,9 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import showdown from 'showdown'// 引入md文件
-
+import ElementUI from 'element-ui' // 引入elementui
 Vue.config.productionTip = false
-
+Vue.use(ElementUI)
 // 使用md文件
 Vue.prototype.md2html = (md) => {
   let converter = new showdown.Converter()
