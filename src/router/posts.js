@@ -17,19 +17,19 @@ export default [
     component: shuati
   },
   {
-    path: '/blog/post/youya',
-    name: 'youya',
-    meta: {
-      title: '如何将前端代码写的优雅'
-    },
-    component: youya
-  },
-  {
     path: '/blog/post/blog-build',
     name: 'blog-build',
     meta: {
       title: '搭建自己的个人博客'
     },
     component: blogBuild
+  },
+  {
+    path: '/blog/post/youya',
+    name: 'youya',
+    meta: {
+      title: '如何将前端代码写的优雅'
+    },
+    component: youya
   }
 ]
