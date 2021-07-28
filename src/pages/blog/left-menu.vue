@@ -13,7 +13,6 @@
           <i :class="item.logo"></i>
           <span>{{item.title}}</span>
         </template>
-          <!-- <el-menu-item :index="`${key}-1`">html的基础标签</el-menu-item> -->
           <el-menu-item
             v-for="subitem in groupList[key]"
             :index="`${subitem.blogTheme}-${subitem.blogIndex}`"

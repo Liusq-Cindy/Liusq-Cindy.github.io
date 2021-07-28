@@ -2,10 +2,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import home from '@/pages/home/index'
 import blogList from '@/pages/blog/index'
-import postIndex from '@/components/posts/index'
+// import postIndex from '@/components/posts/basic/youya/index'
 // import firstPageContent from '@/pages/home/first-page-content'
+import posts from './posts'
 
 Vue.use(VueRouter)
+// const children = Base.concat(Survey).concat(Result);
 
 const routes = [
   {
@@ -16,24 +18,15 @@ const routes = [
       path: '/blog',
       name: 'blogList',
       component: blogList,
-      children: [{
-        path: '/blog/post',
-        name: 'postIndex',
-        component: postIndex
-      }]
+      children: posts
+      // [{
+      //   path: '/blog/post',
+      //   name: 'postIndex',
+      //   component: postIndex
+      // }]
     }
-    // {
-    //   path: '/post',
-    //   name: 'postIndex',
-    //   component: postIndex
-    // }
     ]
   }
-  // {
-  //   path: '/post',
-  //   name: 'postIndex',
-  //   component: postIndex
-  // }
 ]
 
 const router = new VueRouter({

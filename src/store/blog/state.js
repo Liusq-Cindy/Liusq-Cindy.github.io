@@ -7,8 +7,8 @@ export default {
     4: {'title': 'Vue', 'logo': 'el-icon-setting'}
   },
   blogList: [
-    { blogTitle: '如何学习前端', blogTheme: 0, blogIndex: 0, blogPath: '' },
-    { blogTitle: '将代码写的优雅', blogTheme: 0, blogIndex: 1, blogPath: '/blog/post' },
+    { blogTitle: '如何学习前端', blogTheme: 0, blogIndex: 0, blogPath: '/blog/post/shuati' },
+    { blogTitle: '将代码写的优雅', blogTheme: 0, blogIndex: 1, blogPath: '/blog/post/youya' },
     { blogTitle: '搭建一个个人博客', blogTheme: 0, blogIndex: 2 },
     { blogTitle: 'html基础标签', blogTheme: 1, blogIndex: 0 },
     { blogTitle: 'h5的新标签', blogTheme: 1, blogIndex: 1 },

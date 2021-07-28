@@ -24,9 +24,6 @@ export default {
     }
   },
   methods: {
-    clickTopage () {
-      this.$router.push('/post')
-    }
   },
   created () {
     console.log('this.$route.path', this.$route.path === '/')
