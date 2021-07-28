@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     clickTopage () {
-      this.$router.push('/post')
+      this.$router.push('/blog/post')
     }
   }
 }

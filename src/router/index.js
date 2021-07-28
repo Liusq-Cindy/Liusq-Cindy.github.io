@@ -15,13 +15,19 @@ const routes = [
     children: [{
       path: '/blog',
       name: 'blogList',
-      component: blogList
-    },
-    {
-      path: '/post',
-      name: 'postIndex',
-      component: postIndex
-    }]
+      component: blogList,
+      children: [{
+        path: '/blog/post',
+        name: 'postIndex',
+        component: postIndex
+      }]
+    }
+    // {
+    //   path: '/post',
+    //   name: 'postIndex',
+    //   component: postIndex
+    // }
+    ]
   }
   // {
   //   path: '/post',

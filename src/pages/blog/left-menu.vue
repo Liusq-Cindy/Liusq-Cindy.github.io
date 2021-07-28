@@ -41,15 +41,15 @@ export default {
     return {
       isCollapse: true,
       Blog_List_Map: {
-        0: {'title': '前言', 'logo': 'el-icon-menu'},
+        0: {'title': '综述前言', 'logo': 'el-icon-menu'},
         1: {'title': 'HTML', 'logo': 'el-icon-menu'},
         2: {'title': 'CSS', 'logo': 'el-icon-location'},
         3: {'title': 'JS', 'logo': 'el-icon-document'},
         4: {'title': 'Vue', 'logo': 'el-icon-setting'}
       },
       blogList: [
-        { blogTitle: '如何学习前端', blogTheme: 0, blogIndex: 0, blogPath: '/post' },
-        { blogTitle: '将代码写的优雅', blogTheme: 0, blogIndex: 1, blogPath: '/post' },
+        { blogTitle: '如何学习前端', blogTheme: 0, blogIndex: 0, blogPath: '' },
+        { blogTitle: '将代码写的优雅', blogTheme: 0, blogIndex: 1, blogPath: '/blog/post' },
         { blogTitle: '搭建一个个人博客', blogTheme: 0, blogIndex: 2 },
         { blogTitle: 'html基础标签', blogTheme: 1, blogIndex: 0 },
         { blogTitle: 'h5的新标签', blogTheme: 1, blogIndex: 1 },
@@ -83,7 +83,7 @@ export default {
     },
     handleBlogClick (subitem) {
       const selectBlog = `${subitem.blogTheme}-${subitem.blogIndex}`
-      console.log('点击博客标题', selectBlog)
+      console.log('点击博客标题,跳转对应页面', selectBlog)
       this.$router.push(subitem.blogPath)
     }
   },

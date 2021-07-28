@@ -81,7 +81,9 @@ export default {
  width: 100%;
  .header-content {
   position: fixed;
+  box-sizing: border-box;
   top: 0;
+  padding: 0 16px;
   background: #FFF;
   box-shadow: 2px 0 10px #ccc;
   height: 56px;
@@ -89,7 +91,6 @@ export default {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 0 16px;
  }
   .header-left {
     cursor: pointer;

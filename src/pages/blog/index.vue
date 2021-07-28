@@ -2,6 +2,7 @@
 <template>
   <div class="page-blog-home">
    <left-menu></left-menu>
+   <router-view></router-view>
   </div>
 </template>
 
