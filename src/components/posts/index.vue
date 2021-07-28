@@ -1,10 +1,11 @@
 <template>
-  <div class="hello markdown-body">
+  <div class="mk-content markdown-body">
     <!-- <h1>{{ msg }}</h1> -->
     <h1>如何将前端代码写的优雅？</h1>
     <h5>{{ msg }}</h5>
     <!-- <div v-html="Readme" style="padding: 20px;"></div> -->
     <Readme></Readme>
+   <el-backtop target=".mk-content"></el-backtop>
   </div>
 </template>
 
@@ -29,13 +30,14 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-.hello {
+<style scoped lang="less">
+.mk-content {
   text-align: left;
   padding: 20px;
   height: 100%;
+  overflow: scroll;
+  h1, h2 {
+    font-weight: normal;
+  }
 }
 </style>

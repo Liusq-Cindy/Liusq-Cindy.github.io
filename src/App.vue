@@ -1,5 +1,6 @@
 <template>
-  <div id="app" class="markdown-body">
+  <!-- <div id="app" class="markdown-body"> -->
+  <div id="app">
     <router-view/>
   </div>
 </template>
