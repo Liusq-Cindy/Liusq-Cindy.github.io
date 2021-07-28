@@ -9,9 +9,9 @@ export default {
   blogList: [
     { blogTitle: '如何学习前端', blogTheme: 0, blogIndex: 0, blogPath: '/blog/post/shuati' },
     { blogTitle: '将代码写的优雅', blogTheme: 0, blogIndex: 1, blogPath: '/blog/post/youya' },
-    { blogTitle: '搭建一个个人博客', blogTheme: 0, blogIndex: 2 },
-    { blogTitle: 'html基础标签', blogTheme: 1, blogIndex: 0 },
-    { blogTitle: 'h5的新标签', blogTheme: 1, blogIndex: 1 },
-    { blogTitle: '理解dom与虚拟dom', blogTheme: 1, blogIndex: 2 }
+    { blogTitle: '搭建一个个人博客', blogTheme: 0, blogIndex: 2, blogPath: '/blog/post/blog-build' }
+    // { blogTitle: 'html基础标签', blogTheme: 1, blogIndex: 0 },
+    // { blogTitle: 'h5的新标签', blogTheme: 1, blogIndex: 1 },
+    // { blogTitle: '理解dom与虚拟dom', blogTheme: 1, blogIndex: 2 }
   ]
 }

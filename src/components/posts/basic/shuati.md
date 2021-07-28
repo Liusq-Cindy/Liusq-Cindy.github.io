@@ -26,7 +26,3 @@
 ## 6、前端面试题简略
 
 [2021前端面试经常被问到的题(附答案)](https://blog.csdn.net/xieanna123/article/details/105545758)
-
-## 7、范杨给列的网易面试要点
-
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bc7a42cf-adeb-47a7-9db4-69f694b8f122/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bc7a42cf-adeb-47a7-9db4-69f694b8f122/Untitled.png)

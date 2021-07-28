@@ -1,6 +1,8 @@
 // 博客对应的路由
 import shuati from '@/components/posts/basic/shuati.md'
 import youya from '@/components/posts/basic/youya.md'
+import blogBuild from '@/components/posts/basic/blog-build.md'
+
 export default [
   {
     path: '/blog/post/shuati',
@@ -18,5 +20,13 @@ export default [
       title: '如何将前端代码写的优雅'
     },
     component: youya
+  },
+  {
+    path: '/blog/post/blog-build',
+    name: 'blogBuild',
+    meta: {
+      title: '搭建自己的个人博客'
+    },
+    component: blogBuild
   }
 ]
