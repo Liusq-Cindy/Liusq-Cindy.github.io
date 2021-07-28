@@ -2,11 +2,14 @@
 import shuati from '@/components/posts/basic/shuati.md'
 import youya from '@/components/posts/basic/youya.md'
 import blogBuild from '@/components/posts/basic/blog-build.md'
+// import shuati from '@/components/posts/basic/shuati.vue'
+// import youya from '@/components/posts/basic/youya.vue'
+// import blogBuild from '@/components/posts/basic/blog-build.vue'
 
 export default [
   {
     path: '/blog/post/shuati',
-    name: 'shuati',
+    // name: 'shuati',
     meta: {
       title: '知识体系及刷题'
     },
@@ -15,7 +18,7 @@ export default [
   },
   {
     path: '/blog/post/youya',
-    name: 'youya',
+    // name: 'youya',
     meta: {
       title: '如何将前端代码写的优雅'
     },
@@ -23,7 +26,7 @@ export default [
   },
   {
     path: '/blog/post/blog-build',
-    name: 'blogBuild',
+    // name: 'blogBuild',
     meta: {
       title: '搭建自己的个人博客'
     },
