@@ -1,7 +1,7 @@
 <template>
   <div class="we-footer">
     <div class="footer-left">
-     <span>Keep热情~~</span>
+     <span>Keep Fighting ~~</span>
      <span>联系方式： 306749392@qq.com</span>
     </div>
     <div class="footer-right">
