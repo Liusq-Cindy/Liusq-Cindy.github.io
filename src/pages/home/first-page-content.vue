@@ -1,10 +1,13 @@
 <template>
   <div class="first-page-content">
     <h1>{{ msg }}</h1>
-    <h2>博客文章</h2>
-    <ul>
-      <li @click="clickTopage()">
+    <h2>最新博客文章</h2>
+    <ul class="blog-recommend">
+      <li @click="clickTopage('/blog/post/youya')">
         如何将前端代码写的优雅？
+      </li>
+      <li @click="clickTopage('/blog/post/blog-build')">
+        如何搭建一个github个人博客？
       </li>
     </ul>
   </div>
@@ -20,8 +23,8 @@ export default {
     }
   },
   methods: {
-    clickTopage () {
-      this.$router.push('/blog/post/youya')
+    clickTopage (path) {
+      this.$router.push(path)
     }
   }
 }
@@ -31,20 +34,30 @@ export default {
 .first-page-content {
  flex-grow: 1;
  background: rgb(248, 247, 247);
- padding-top: 44px;
+ padding-top: 64px;
   h1, h2 {
+    padding-top: 16px;
    font-weight: normal;
  }
  ul {
    list-style-type: none;
    padding: 0;
  }
- li {
-   display: inline-block;
-   margin: 0 10px;
- }
  a {
    color: #42b983;
+ }
+ .blog-recommend {
+   padding-top: 16px;
+   color: rgb(70, 69, 69);
+   li {
+     display: block;
+     margin: 16px;
+     font-size: 18px;
+     cursor: pointer;
+     &:hover {
+       color: #427fb9;
+     }
+   }
  }
 }
 </style>
