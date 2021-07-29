@@ -2,12 +2,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import home from '@/pages/home/index'
 import blogList from '@/pages/blog/index'
-// import postIndex from '@/components/posts/basic/youya/index'
-// import firstPageContent from '@/pages/home/first-page-content'
+import basicMsg from '@/pages/basic-msg/index'
+import interestPage from '@/pages/basic-msg/interest'
+import errorPage from '@/pages/basic-msg/error'
+
 import posts from './posts'
 
 Vue.use(VueRouter)
-// const children = Base.concat(Survey).concat(Result);
 
 const routes = [
   {
@@ -19,11 +20,18 @@ const routes = [
       name: 'blogList',
       component: blogList,
       children: posts
-      // [{
-      //   path: '/blog/post',
-      //   name: 'postIndex',
-      //   component: postIndex
-      // }]
+    }, {
+      path: '/message',
+      name: 'basic-msg',
+      component: basicMsg
+    }, {
+      path: '/interest',
+      name: 'interest-msg',
+      component: interestPage
+    }, {
+      path: '/404',
+      name: 'error',
+      component: errorPage
     }
     ]
   }

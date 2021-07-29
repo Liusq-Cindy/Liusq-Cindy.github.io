@@ -30,7 +30,7 @@ export default {
 <style scoped lang='less'>
 .first-page-content {
  flex-grow: 1;
- background: rgb(252, 248, 248);
+ background: rgb(248, 247, 247);
  padding-top: 44px;
   h1, h2 {
    font-weight: normal;

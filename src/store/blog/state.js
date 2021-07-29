@@ -1,10 +1,10 @@
 export default {
   Blog_List_Map: {
-    0: {'title': '综述前言', 'logo': 'el-icon-menu'},
-    1: {'title': 'HTML', 'logo': 'el-icon-menu'},
-    2: {'title': 'CSS', 'logo': 'el-icon-location'},
-    3: {'title': 'JS', 'logo': 'el-icon-document'},
-    4: {'title': 'Vue', 'logo': 'el-icon-setting'}
+    0: {'title': '综述前言', 'logo': 'el-icon-view'},
+    1: {'title': 'HTML', 'logo': 'el-icon-tickets'},
+    2: {'title': 'CSS', 'logo': 'el-icon-shopping-bag-2'},
+    3: {'title': 'JS', 'logo': 'el-icon-magic-stick'},
+    4: {'title': 'Vue', 'logo': 'el-icon-umbrella'}
   },
   blogList: [
     { blogTitle: '如何学习前端', blogTheme: 0, blogIndex: 0, blogPath: '/blog/post/shuati' },

@@ -4,7 +4,7 @@
    <left-menu></left-menu>
    <div class="mk-content markdown-body">
     <span>作者: 阿溜 </span>
-    <div style="color: rgb(147, 194, 216)">Maintain enthusiasm ~~ </div>
+    <div style="color: rgb(147, 194, 216)">Keep Fighting ~ </div>
     <router-view></router-view>
    </div>
    <el-backtop target=".mk-content"></el-backtop>

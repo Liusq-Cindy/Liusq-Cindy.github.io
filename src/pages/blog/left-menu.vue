@@ -86,7 +86,7 @@ export default {
 .page-blog-leftmenu {
  height: 100%;
  display: flex;
- width: 200px;
+ max-width: 200px;
  .leftmenu-list {
   position: relative;
   padding-top: 8px;
