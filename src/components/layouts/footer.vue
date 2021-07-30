@@ -28,6 +28,7 @@ export default {
 <style scoped lang="less">
 .we-footer {
   position: absolute;
+  box-sizing: border-box;
   bottom: 0;
   background: #fff;
   opacity: 0.7;
