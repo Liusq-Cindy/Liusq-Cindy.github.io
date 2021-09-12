@@ -32,7 +32,7 @@
 
 <script>
 import { reduce } from 'lodash'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'blogList',
@@ -65,6 +65,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      setCurrentBlog: 'setCurrentBlog'
+    }),
     handleOpen (key, keyPath) {
       console.log(key, keyPath)
     },
@@ -72,9 +75,12 @@ export default {
       console.log(key, keyPath)
     },
     handleBlogClick (subitem) {
-      const selectBlog = `${subitem.blogTheme}-${subitem.blogIndex}`
-      console.log('点击博客标题,跳转对应页面', selectBlog)
-      this.$router.push(subitem.blogPath)
+      // const selectBlog = `${subitem.blogTheme}-${subitem.blogIndex}`
+      console.log('点击博客标题,跳转对应页面', subitem)
+      this.setCurrentBlog(subitem)
+      if (subitem.blogPath) {
+        this.$router.push(subitem.blogPath)
+      }
     }
   },
   created () {

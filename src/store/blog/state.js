@@ -1,4 +1,7 @@
 export default {
+  currentBlog: {
+    blogTitle: '将代码写的优雅', blogTheme: 0, blogIndex: 1, blogPath: '/blog/post/youya'
+  },
   Blog_List_Map: {
     0: {'title': '综述前言', 'logo': 'el-icon-view'},
     1: {'title': 'HTML', 'logo': 'el-icon-tickets'},
@@ -7,10 +10,10 @@ export default {
     4: {'title': 'Vue', 'logo': 'el-icon-umbrella'}
   },
   blogList: [
-    { blogTitle: '如何学习前端', blogTheme: 0, blogIndex: 0, blogPath: '/blog/post/shuati' },
+    { blogTitle: '前端网站推荐', blogTheme: 0, blogIndex: 0, blogPath: '/blog/post/shuati' },
     { blogTitle: '将代码写的优雅', blogTheme: 0, blogIndex: 1, blogPath: '/blog/post/youya' },
-    { blogTitle: '搭建一个个人博客', blogTheme: 0, blogIndex: 2, blogPath: '/blog/post/blog-build' }
-    // { blogTitle: 'html基础标签', blogTheme: 1, blogIndex: 0 },
+    { blogTitle: '搭建一个个人博客', blogTheme: 0, blogIndex: 2, blogPath: '/blog/post/blog-build' },
+    { blogTitle: 'html基础标签', blogTheme: 1, blogIndex: 0, blogPath: '/blog/post/htmlTab', blogName: 'basicTag' }
     // { blogTitle: 'h5的新标签', blogTheme: 1, blogIndex: 1 },
     // { blogTitle: '理解dom与虚拟dom', blogTheme: 1, blogIndex: 2 }
   ]
