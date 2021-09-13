@@ -75,10 +75,9 @@ export default {
       console.log(key, keyPath)
     },
     handleBlogClick (subitem) {
-      // const selectBlog = `${subitem.blogTheme}-${subitem.blogIndex}`
       console.log('点击博客标题,跳转对应页面', subitem)
       this.setCurrentBlog(subitem)
-      if (subitem.blogPath) {
+      if (subitem.blogPath && (subitem.blogPath !== this.$route.path)) {
         this.$router.push(subitem.blogPath)
       }
     }

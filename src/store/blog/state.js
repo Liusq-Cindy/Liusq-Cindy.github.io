@@ -10,11 +10,15 @@ export default {
     4: {'title': 'Vue', 'logo': 'el-icon-umbrella'}
   },
   blogList: [
-    { blogTitle: '前端网站推荐', blogTheme: 0, blogIndex: 0, blogPath: '/blog/post/shuati' },
-    { blogTitle: '将代码写的优雅', blogTheme: 0, blogIndex: 1, blogPath: '/blog/post/youya' },
-    { blogTitle: '搭建一个个人博客', blogTheme: 0, blogIndex: 2, blogPath: '/blog/post/blog-build' },
-    { blogTitle: 'html基础标签', blogTheme: 1, blogIndex: 0, blogPath: '/blog/post/htmlTab', blogName: 'basicTag' }
-    // { blogTitle: 'h5的新标签', blogTheme: 1, blogIndex: 1 },
-    // { blogTitle: '理解dom与虚拟dom', blogTheme: 1, blogIndex: 2 }
+    // 基础类
+    { blogTitle: '前端网站推荐', blogTheme: 0, blogIndex: 0, blogPath: '/blog/artical/webside' },
+    { blogTitle: '将代码写的优雅', blogTheme: 0, blogIndex: 1, blogPath: '/blog/artical/youya' },
+    { blogTitle: '搭建一个个人博客', blogTheme: 0, blogIndex: 2, blogPath: '/blog/artical/blogbuild' },
+    // html类
+    { blogTitle: 'html基础标签', blogTheme: 1, blogIndex: 0, blogPath: '/blog/artical/basicTag', blogName: 'basicTag' },
+    { blogTitle: 'html基础QA', blogTheme: 1, blogIndex: 1, blogPath: '/blog/artical/basicQA', blogName: 'basicQA' },
+    { blogTitle: 'html5的一些新标签', blogTheme: 1, blogIndex: 2, blogPath: '/blog/artical/html5', blogName: 'html5' },
+    { blogTitle: '理解虚拟Dom', blogTheme: 1, blogIndex: 3, blogPath: '/blog/artical/vDom', blogName: 'vDom' },
+    { blogTitle: 'html常见面试题汇总', blogTheme: 1, blogIndex: 4, blogPath: '/blog/artical/test-html', blogName: 'testHtml' }
   ]
 }
