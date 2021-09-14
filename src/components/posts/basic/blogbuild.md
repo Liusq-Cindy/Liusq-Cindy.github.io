@@ -204,9 +204,9 @@ if (options.extract) {
 
 ### 4、第四步，多分支管理
 
-> 由于github-pages默认会加载master上的代码，所以master上的代码需要是打包后的dist文件内容，那么对于日常开发所需，我们需要另一个分支来存储所有的代码。（说是可以设置gh-pages为仓库的加载分支，但是我在新版github官网中仓库的setting，没找到这个source设置的修改，如果有人知道，请火速联系我）
+> 由于github-pages默认会加载master上的代码，所以master上的代码需要是打包后的dist文件内容，那么对于日常开发所需，我们需要另一个分支来存储所有的代码。（由于github-pages默认会加载master上的代码，所以master上的代码需要是打包后的dist文件内容，那么对于日常开发所需，我们需要另一个分支来存储所有的代码。（目前github已支持修改github pages的资源分支了，在Setting/Pages目录下设置即可）
 
-对于gh-pages打包后，要将dist目录拷贝到指定的分支，如master上，除了手动操作，也可以使用如下命令：( git subtree push --prefix docpath origin branch )，此处应该是
+以master作为资源目录为例，我们另起一个gh-pages分支存储所有代码，在gh-pages分支打包后，要将dist目录拷贝到指定的分支，如master上，除了手动操作，也可以使用如下命令：( git subtree push --prefix docpath origin branch )，此处应该是
 
 ```js
 git subtree push --prefix dist origin master
