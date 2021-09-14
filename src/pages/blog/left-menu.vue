@@ -9,7 +9,7 @@
       @close="handleClose"
       :collapse="isCollapse">
       <el-submenu v-for="(item, key ) in Blog_List_Map" :key="key" :index="key">
-        <template slot="title">
+        <template slot="title" class="tab-title">
           <i :class="item.logo"></i>
           <span>{{item.title}}</span>
         </template>
@@ -32,7 +32,7 @@
 
 <script>
 import { reduce } from 'lodash'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'blogList',
@@ -65,6 +65,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      setCurrentBlog: 'setCurrentBlog'
+    }),
     handleOpen (key, keyPath) {
       console.log(key, keyPath)
     },
@@ -72,9 +75,11 @@ export default {
       console.log(key, keyPath)
     },
     handleBlogClick (subitem) {
-      const selectBlog = `${subitem.blogTheme}-${subitem.blogIndex}`
-      console.log('点击博客标题,跳转对应页面', selectBlog)
-      this.$router.push(subitem.blogPath)
+      console.log('点击博客标题,跳转对应页面', subitem)
+      this.setCurrentBlog(subitem)
+      if (subitem.blogPath && (subitem.blogPath !== this.$route.path)) {
+        this.$router.push(subitem.blogPath)
+      }
     }
   },
   created () {
@@ -86,16 +91,22 @@ export default {
 .page-blog-leftmenu {
  height: 100%;
  display: flex;
- max-width: 200px;
+ max-width: 240px;
  .leftmenu-list {
   position: relative;
   padding-top: 8px;
-  height: calc(100% - 8px);
+  padding-bottom: 8px;
+  height: calc(100% - 16px);
   /deep/.el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
+    width: 240px;
   }
   /deep/.el-menu {
-   height: 100%;
+    height: 100%;
+    overflow-y: scroll;
+  }
+  /deep/.el-submenu__title{
+    border-top: 1px solid #f1f1f1;
+    background: linear-gradient(#f1f1f1,#fefdff);
   }
   .menu-collapse {
     position: absolute;

@@ -1,0 +1,202 @@
+参考文章：
+
+[概念 | webpack 中文文档](https://webpack.docschina.org/concepts/)
+
+[Webpack系列-第一篇基础杂记](https://juejin.cn/post/6844903780123672590)
+
+[入门 Webpack，看这篇就够了](https://segmentfault.com/a/1190000006178770)
+
+[【前端】webpack、npm、node、nodejs之间的关系_bandaoyu的博客-CSDN博客_webpack和nodejs关系](https://blog.csdn.net/bandaoyu/article/details/104562824)
+
+# 一、介绍
+
+        Webpack 是一个前端资源加载/打包工具。它将根据模块的依赖关系进行静态分析，然后将这些模块按照指定的规则生成对应的静态资源。
+
+        打个比方就是我们搭建一个项目好比搭建一个房子，我们把所需要的材料（js文件、图片等）交给webpack，最后webpack会帮我们做好一切，并把房子（即bundle）输出。
+
+# 二、一些基础概念
+
+## loader
+
+webpack核心，webpack本身只能识别js文件，对于非js文件，即需要loader转换为js文件。换句话说，,Loader就是资源转换器。由于在webpack里，所有的资源都是模块，不同资源都最终转化成js去处理。针对不同形式的资源采用不同的Loader去编译，这就是Loader的意义。
+
+## 插件
+
+插件在 webpack 的配置信息 plugins 选项中指定，用于完成一些 loader 不能完成的工作。
+
+webpack核心，loader处理非js文件，那么插件可以有更广泛的用途。整个webpack其实就是各类的插件形成的，插件的范围包括，从打包优化和压缩，一直到重新定义环境中的变量。插件接口功能极其强大，可以用来处理各种各样的任务。
+
+### loader和插件的区别
+
+Loaders和Plugins常常被弄混，但是他们其实是完全不同的东西，可以这么来说，loaders是在打包构建过程中用来处理源文件的（JSX，Scss，Less..），一次处理一个，插件并不直接操作单个文件，它直接对整个构建过程其作用
+
+## entry(入口)
+
+入口起点(entry point)即是webpack通过该起点找到本次项目所直接或间接依赖的资源（模块、库等），并对其进行处理，最后输出到bundle中。入口文件由用户自定义，可以是一个或者多个，每一个entry最后对应一个bundle。
+
+## output(出口)
+
+通过配置output属性可以告诉webpack将bundle命名并输出到对应的位置。
+
+## Chunk
+
+被entry所依赖的额外的代码块，同样可以包含一个或者多个文件。chunk也就是一个个的js文件，在异步加载中用处很大。chunk实际上就是webpack打包后的产物，如果你不想最后生成一个包含所有的bundle，那么可以生成一个个chunk，并通过按需加载引入。同时它还能通过插件提取公共依赖生成公共chunk,避免多个bundle中有多个相同的依赖代码。
+
+# 三、配置文件
+
+创建webpack.config.js文件，示例代码如下所示：更多可见官网：[https://webpack.js.org/guides/](https://webpack.js.org/guides/)
+
+```jsx
+const path = require('path')
+module.exports = {
+		entry: "./runoob1.js", // 入口文件
+    output: {
+        path: __dirname,
+        filename: "bundle.js" // 出口文件
+    },
+  devServer: {
+    historyApiFallback: true,
+    host: '0.0.0.0',
+    // 启用 webpack 的 模块热替换 功能
+    hot: true,
+    hotOnly: true,
+    inline: true,
+    // 用于nginx配置 不检查host
+    disableHostCheck: true,
+    // open: 'Google Chrome',
+    proxy: { // 接口代理
+      '/api': {
+        target: 'http://ipm-his-web-service-qa4.guahao-test.com/',
+        changeOrigin: true,
+      },
+    },
+    headers: {
+      // Friday: 配置允许跨域请求所有静态资源
+      'Access-Control-Allow-Origin': '*',
+    },
+  },
+  module: {
+    rules: [
+      loaders: [
+            { test: /\.css$/, loader: "style-loader!css-loader" } // loader加载器
+        ]
+    ],
+  },
+}
+```
+
+# 四、动手写一个webpack插件
+
+忽略，见
+
+[webpack-插件机制杂记](https://juejin.cn/post/6844903789804126222)
+
+> Webpack本身并不难于理解，难的是各种各样的配置和周围生态带来的复杂，然而也是这种复杂给我们带来了极高的便利性，理解这些有助于在搭建项目更好的优化。后面会继续写出两篇总结，分别是webpack的内部原理流程和webpack的插件开发原理。
+
+# 五、常见问题
+
+[关于webpack的面试题](https://www.cnblogs.com/gaoht/p/11310365.html)
+
+[Webpack-- 常见面试题](https://www.cnblogs.com/fsg6/p/14497415.html)
+
+[webpack面试题](https://www.jianshu.com/p/e80d38661358)
+
+以下总结几个最常见的：
+
+## 1. webpack打包原理、流程
+
+Webpack 的运行流程是一个串行的过程，从启动到结束会依次执行以下流程：
+
+1. 初始化参数：从配置文件和 Shell 语句中读取与合并参数，得出最终的参数；
+2. 开始编译：用上一步得到的参数初始化 Compiler 对象，加载所有配置的插件，执行对象的 run 方法开始执行编译；
+3. 确定入口：根据配置中的 entry 找出所有的入口文件；
+4. 编译模块：从入口文件出发，调用所有配置的 Loader 对模块进行翻译，再找出该模块依赖的模块，再递归本步骤直到所有入口依赖的文件都经过了本步骤的处理；
+5. 完成模块编译：在经过第4步使用 Loader 翻译完所有模块后，得到了每个模块被翻译后的最终内容以及它们之间的依赖关系；
+6. 输出资源：根据入口和模块之间的依赖关系，组装成一个个包含多个模块的 Chunk，再把每个 Chunk 转换成一个单独的文件加入到输出列表，这步是可以修改输出内容的最后机会；
+7. 输出完成：在确定好输出内容后，根据配置确定输出的路径和文件名，把文件内容写入到文件系统。
+
+在以上过程中，Webpack 会在特定的时间点广播出特定的事件，插件在监听到感兴趣的事件后会执行特定的逻辑，并且插件可以调用 Webpack 提供的 API 改变 Webpack 的运行结果。
+
+## 2、webpack常用的loader和plugin插件
+
+**loader:**
+
+- file-loader：把文件输出到一个文件夹中，在代码中通过相对 URL 去引用输出的文件
+- url-loader：和 file-loader 类似，但是能在文件很小的情况下以 base64 的方式把文件内容注入到代码中去
+- source-map-loader：加载额外的 Source Map 文件，以方便断点调试
+- image-loader：加载并且压缩图片文件
+- babel-loader：把 ES6 转换成 ES5
+- css-loader：加载 CSS，支持模块化、压缩、文件导入等特性
+- style-loader：把 CSS 代码注入到 JavaScript 中，通过 DOM 操作去加载 CSS。
+- eslint-loader：通过 ESLint 检查 JavaScript 代码
+
+**plugin:**
+
+- define-plugin：定义环境变量
+- commons-chunk-plugin：提取公共代码
+- uglifyjs-webpack-plugin：通过UglifyES压缩ES6代码
+
+## 3、webpack和与grunt、gulp的不同
+
+三者都是前端构建工具，grunt和gulp在早期比较流行，现在webpack相对来说比较主流，不过一些轻量化的任务还是会用gulp来处理，比如单独打包CSS文件等。
+
+grunt和gulp是基于任务和流（Task、Stream）的。类似jQuery，找到一个（或一类）文件，对其做一系列链式操作，更新流上的数据， 整条链式操作构成了一个任务，多个任务就构成了整个web的构建流程。
+
+webpack是基于入口的。webpack会自动地递归解析入口所需要加载的所有资源文件，然后用不同的Loader来处理不同的文件，用Plugin来扩展webpack功能。
+
+所以总结一下：
+
+- 从构建思路来说
+
+gulp和grunt需要开发者将整个前端构建过程拆分成多个`Task`，并合理控制所有`Task`的调用关系 webpack需要开发者找到入口，并需要清楚对于不同的资源应该使用什么Loader做何种解析和加工
+
+- 对于知识背景来说
+
+gulp更像后端开发者的思路，需要对于整个流程了如指掌 webpack更倾向于前端开发者的思路
+
+## 4、webpack的配置，单页面及多页面
+
+单页应用可以理解为webpack的标准模式，直接在entry中指定单页应用的入口即可，这里不再赘述
+
+多页应用的话，可以使用webpack的 **AutoWebPlugin**来完成简单自动化的构建，但是前提是项目的目录结构必须遵守他预设的规范。 多页应用中要注意的是：
+
+- 每个页面都有公共的代码，可以将这些代码抽离出来，避免重复的加载。比如，每个页面都引用了同一套css样式表
+- 随着业务的不断扩展，页面可能会不断的追加，所以一定要让入口的配置足够灵活，避免每次添加新页面还需要修改构建配置
+
+## 5、webpack构建流程
+
+1. 初始化参数，从配置文件和shell语句中读到的参数合并，得到最后的参数
+2. 开始编译：用合并得到的参数初始化complier对象，加载是所有配置的插件，执行run方法开始编译
+3. 确定入口，通过entry找到入口文件
+4. 编译模块，从入口文件出发，调用所有配置的loader对模块进行解析翻译，在找到该模块依赖的模块进行处理
+5. 完成模块编译，得到每个模块被翻译之后的最终的内容和依赖关系
+6. 输出资源，根据入口和模块之间的依赖关系，组装成一个个包含多个模块的chunk，在把每个chunk转换成一个单独的文件加载到输出列表
+7. 输出完成，确定输出的路径和文件名，把内容写到文件系统中**在以上过程中，webpack会在特定的时间点广播出特定的事件，插件在舰艇感兴趣的事件后会执行特定的逻辑，改变webpack的运行结果**
+
+## 6、 webpack3和webpack4的区别
+
+1.1. mode/–mode参数
+新增了mode/--mode参数来表示是开发还是生产（development/production）
+production 侧重于打包后的文件大小，development侧重于goujiansud
+1.2. 移除loaders，必须使用rules（在3版本的时候loaders和rules 是共存的但是到4的时候只允许使用rules）
+1.3. 移除了CommonsChunkPlugin (提取公共代码)，用optimization.splitChunks和optimization.runtimeChunk来代替
+1.4. 支持es6的方式导入JSON文件，并且可以过滤无用的代码
+
+`let jsonData = require('./data.json')
+import jsonData from './data.json'
+import { first } from './data.json' // 打包时只会把first相关的打进去`
+
+1.5. 升级happypack插件（happypack可以进行多线程加速打包）
+1.6.  ExtractTextWebpackPlugin调整，建议选用新的CSS文件提取kiii插件mini-css-extract-plugin，production模式，增加  minimizer
+
+## 7、**如何在vue项目中实现按需加载？**
+
+Vue UI组件库的按需加载 为了快速开发前端项目，经常会引入现成的UI组件库如ElementUI、iView等，但是他们的体积和他们所提供的功能一样，是很庞大的。 而通常情况下，我们仅仅需要少量的几个组件就足够了，但是我们却将庞大的组件库打包到我们的源码中，造成了不必要的开销。
+
+不过很多组件库已经提供了现成的解决方案，如Element出品的babel-plugin-component和AntDesign出品的babel-plugin-import 安装以上插件后，在.babelrc配置中或babel-loader的参数中进行设置，即可实现组件按需加载了。
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7d6fb3d5-035d-48db-aef9-62d49c6753a5/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7d6fb3d5-035d-48db-aef9-62d49c6753a5/Untitled.png)
+
+单页应用的按需加载 现在很多前端项目都是通过单页应用的方式开发的，但是随着业务的不断扩展，会面临一个严峻的问题——首次加载的代码量会越来越多，影响用户的体验。
+
+通过import(*)语句来控制加载时机，webpack内置了对于import(*)的解析，会将import(*)中引入的模块作为一个新的入口在生成一个chunk。 当代码执行到import(*)语句时，会去加载Chunk对应生成的文件。import()会返回一个Promise对象，所以为了让浏览器支持，需要事先注入Promise polyfill

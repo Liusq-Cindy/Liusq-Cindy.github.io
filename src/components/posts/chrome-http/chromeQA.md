@@ -1,0 +1,313 @@
+参考文章：
+
+[面试官：前端跨页面通信，你知道哪些方法？](https://juejin.cn/post/6844903811232825357)
+
+[2019前端面试系列--HTTP、浏览器面试题](https://www.cnblogs.com/chenwenhao/p/11267238.html)
+
+### **问题汇总：**
+
+1. [前端跨页面通信，你知道哪些方法](https://www.notion.so/QA-340ea72c72fa4b78a3e147547eba7036)？
+2. [内存泄露与垃圾回收](https://www.notion.so/QA-340ea72c72fa4b78a3e147547eba7036)
+3. [OSI 7层模型和TCP/IP 4层模型](https://www.notion.so/QA-340ea72c72fa4b78a3e147547eba7036)
+4. [浏览器存储 cookie、sessionStorage、localStorage](https://www.notion.so/QA-340ea72c72fa4b78a3e147547eba7036)
+5. [同源策略](https://www.notion.so/QA-340ea72c72fa4b78a3e147547eba7036)
+6. [浏览器跨域请求解决方案](https://www.notion.so/QA-340ea72c72fa4b78a3e147547eba7036)
+7. **[浏览器 cookie 和 session 的认识](https://www.notion.so/QA-340ea72c72fa4b78a3e147547eba7036)**
+8. [get和post的区别](https://www.notion.so/QA-340ea72c72fa4b78a3e147547eba7036)
+9. [解释一下options预检请求？](https://www.notion.so/QA-340ea72c72fa4b78a3e147547eba7036)
+10. [URI和URL、URN的区别？](https://www.notion.so/QA-340ea72c72fa4b78a3e147547eba7036)
+11. [介绍下304的过程？](https://www.notion.so/QA-340ea72c72fa4b78a3e147547eba7036)
+12. [Resful API](https://www.notion.so/QA-340ea72c72fa4b78a3e147547eba7036)
+
+# 一、 前端跨页面通信，你知道哪些方法
+
+对于同源页面，常见的方式包括：
+
+- 广播模式：Broadcast Channe / Service Worker / LocalStorage + StorageEvent
+- 共享存储模式：Shared Worker / IndexedDB / cookie
+- 口口相传模式：window.open + window.opener
+- 基于服务端：Websocket / Comet / SSE 等
+
+非同源页面：
+
+可以通过嵌入同源 iframe 作为“桥”，postMessage发送消息，目标页监听message消息。
+
+```jsx
+// 发送消息
+window.parent.postMessage(e.data, '*');
+/* 业务页面代码监听消息 */
+window.addEventListener('message', function (e) {
+// …… do something
+});
+```
+
+# 二、内存泄露与垃圾回收
+
+参考文章：
+
+[深入了解 JavaScript 内存泄露](https://segmentfault.com/a/1190000020231307)
+
+内存泄漏指由于疏忽或错误造成程序**未能释放已经不再使用的内存，造成的内存占用浪费**。如果内存不需要时，没有经过生命周期的释放期，那么就存在内存泄漏。
+
+### JS的垃圾回收原理
+
+参考文章：[https://blog.csdn.net/qq_17550381/article/details/81126809](https://blog.csdn.net/qq_17550381/article/details/81126809)
+
+[https://blog.csdn.net/weixin_43638968/article/details/109492727](https://blog.csdn.net/weixin_43638968/article/details/109492727)
+
+### **JavaScript 的垃圾内存的两种回收方式：**
+
+**1、引用计数垃圾收集**
+
+“对象是否不再需要”简化定义为“对象有没有其他对象引用到它”。如果没有引用指向该对象（零引用），对象将被垃圾回收机制回收
+
+**2、 标记清除法**
+
+当变量进入执行环境时标记为“进入环境”，当变量离开执行环境时则标记为“离开环境”，被标记为“进入环境”的变量是不能被回收的，因为它们正在被使用，而标记为“离开环境”的变量则可以被回收
+
+### JavaScript 内存泄漏的一些场景：
+
+1. **意外的全局变量**
+2. 被遗忘的计时器
+3. 被遗忘的事件监听器
+4. 被遗忘的 ES6 Set 成员
+5. 脱离 DOM 的引用
+
+### 检测内存泄露
+
+1. 谷歌开发者工具，切换至 Performance 选项，勾选 Memory 选项。录制查看曲线图。
+2. 切换memory选项，查看snapshot,然后按照 Shallow Size 进行逆序排序，然后就可以找到最占内存的代码了
+
+参考：[https://www.cnblogs.com/mengff/p/12912795.html](https://www.cnblogs.com/mengff/p/12912795.html)
+
+# 三、OSI 7层模型和TCP/IP 4层模型
+
+以下图片对应的很清晰
+
+参考文章地址：[https://zhuanlan.zhihu.com/p/32059190](https://zhuanlan.zhihu.com/p/32059190)
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8e9dd311-e8fa-4016-93c9-5fc2ad3d25ef/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8e9dd311-e8fa-4016-93c9-5fc2ad3d25ef/Untitled.png)
+
+### 具体含义
+
+7 物理层   光缆、比特流传输
+
+6 数据链路层 控制网络与物理层直接的通信 （mac地址，即网卡地址所在层）
+
+5 网络层 ip寻址和路由选择（ipv4、ipv6）
+
+4 传输层 建立、维护、管理端到端连接 （tcp协议）
+
+3 会话层 建立、维护、管理会话连接
+
+2 表示层 数据格式化，加密，解密
+
+1 应用层 为应用程序提供网络服务 （http协议）
+
+# 四、浏览器存储 cookie、sessionStorage、localStorage
+
+[Untitled](https://www.notion.so/2f59eeabb9534bc6a2a28528abb0d28e)
+
+补充：cookie 原本并不是用来储存的，而是用来与服务端通信的，需要存取请自行封装 api。而 localStorage 则自带 getItem 和 setItem 方法，使用很方便。
+
+localStorage 注意点：
+
+1. localStorage 只能存字符串，存取 JSON 数据需配合 JSON.stringify() 和 JSON.parse()
+2. 遇上禁用 setItem 的浏览器，需要使用 try...catch 捕获异常
+
+# 五、浏览器同源策略
+
+同源策略是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，浏览器很容易受到XSS、CSRF等攻击。所谓同源是指"`协议+域名+端口`"三者相同，即便两个不同的域名指向同一个ip地址，也非同源。
+
+[https://user-gold-cdn.xitu.io/2018/5/23/1638b3579d9eeb32?imageView2/0/w/1280/h/960/format/webp/ignore-error/1](https://user-gold-cdn.xitu.io/2018/5/23/1638b3579d9eeb32?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+
+**同源策略限制内容有：**
+
+- Cookie、LocalStorage、IndexedDB 等存储性内容
+- DOM 节点
+- AJAX 请求发送后，结果被浏览器拦截了
+
+但是有三个标签是允许跨域加载资源：
+
+- `<img src=XXX>`
+- `<link href=XXX>`
+- `<script src=XXX>`
+
+# 六、浏览器跨域请求解决方案
+
+参考文章：[https://juejin.cn/post/6844903767226351623](https://juejin.cn/post/6844903767226351623)
+
+浏览器跨域都需要服务端的配合。
+
+### 1.jsonp
+
+利用 `<script>` 标签没有跨域限制的漏洞，网页可以得到从其他来源动态产生的 JSON 数据。JSONP请求一定需要对方的服务器做支持才可以。
+
+[]()
+
+### 2.cors
+
+浏览器会自动进行 CORS 通信，实现 CORS 通信的关键是后端。只要后端实现了 CORS，就实现了跨域。服务器设置http-header
+
+虽然设置 CORS 和前端没什么关系，但是通过这种方式解决跨域问题的话，会在发送请求时出现两种情况，分别为**简单请求**和**复杂请求**。
+
+[]()
+
+### 1) 简单请求
+
+只要同时满足以下两大条件，就属于简单请求
+
+条件1：使用下列方法之一：
+
+- GET
+- HEAD
+- POST
+
+条件2：Content-Type 的值仅限于下列三者之一：
+
+- text/plain
+- multipart/form-data
+- application/x-www-form-urlencoded
+
+请求中的任意 XMLHttpRequestUpload 对象均没有注册任何事件监听器； XMLHttpRequestUpload 对象可以使用 XMLHttpRequest.upload 属性访问。
+
+### 2) 复杂请求
+
+不符合以上条件的请求就肯定是复杂请求了。
+复杂请求的CORS请求，会在正式通信之前，增加一次HTTP查询请求，称为"预检"请求,该请求是 option 方法的，`通过该请求来知道服务端是否允许跨域请求`。
+
+### 3.postMessage
+
+postMessage是HTML5 XMLHttpRequest Level 2中的API，且是为数不多可以跨域操作的window属性之一，它可用于解决以下方面的问题：
+
+- 页面和其打开的新窗口的数据传递
+- 多窗口之间消息传递
+- 页面与嵌套的iframe消息传递
+- 上面三个场景的跨域数据传递
+
+**postMessage()方法允许来自不同源的脚本采用异步方式进行有限的通信，可以实现跨文本档、多窗口、跨域消息传递**。
+
+### 4.websocket
+
+WebSocket 是一种双向通信协议，在建立连接之后，WebSocket 的 server 与 client 都能主动向对方发送或接收数据，连接建立好了之后 client 与 server 之间的双向通信就与 HTTP 无关了，因此可以跨域。
+
+### 5. Node中间件代理(两次跨域)
+
+实现原理：**同源策略是浏览器需要遵循的标准，而如果是服务器向服务器请求就无需遵循同源策略。**
+代理服务器，需要做以下几个步骤：
+
+- 接受客户端请求 。
+- 将请求 转发给服务器。
+- 拿到服务器 响应 数据。
+- 将 响应 转发给客户端。
+
+### 6.nginx反向代理
+
+实现原理类似于Node中间件代理，需要你搭建一个中转nginx服务器，用于转发请求。
+
+使用nginx反向代理实现跨域，是最简单的跨域方式。只需要修改nginx的配置即可解决跨域问题，支持所有浏览器，支持session，不需要修改任何代码，并且不会影响服务器性能。
+
+实现思路：通过nginx配置一个代理服务器（域名与domain1相同，端口不同）做跳板机，反向代理访问domain2接口，并且可以顺便修改cookie中domain信息，方便当前域cookie写入，实现跨域登录。
+
+### 7.document.domain + iframe
+
+**该方式只能用于二级域名相同的情况下，比如 `a.test.com` 和 `b.test.com` 适用于该方式**。
+只需要给页面添加 `document.domain ='test.com'` 表示二级域名都相同就可以实现跨域。
+
+实现原理：两个页面都通过js强制设置document.domain为基础主域，就实现了同域。
+
+# 七、**浏览器 cookie 和 session 的认识。**
+
+**session 是基于 cookie 实现的。**cookie 保存在客户端浏览器中，而 session 保存在服务器上。cookie 机制是通过检查客户身上的“`通行证`”来确定客户身份的话，那么 session 机制就是通过检查服务器上的“`客户明细表`”来确认客户身份。session 相当于程序在服务器上建立的一份客户档案，客户来访的时候只需要查询客户档案表就可以了。
+
+cookie 和 session 的区别：
+
+1. 存在的位置：cookie 存在于客户端，临时文件夹中；session 存在于服务器的内存中，一个 session 域对象为一个用户浏览器服务
+2. 安全性cookie 是以明文的方式存放在客户端的，安全性低，可以通过一个加密算法进行加密后存放；session 存放于服务器的内存中，所以安全性好
+3. 生命周期(以 20 分钟为例)cookie 的生命周期是累计的，从创建时，就开始计时，20 分钟后 cookie 生命周期结束；session 的生命周期是间隔的，从创建时，开始计时如在 20 分钟，没有访问 session，那么 session 生命周期被销毁。但是，如果在 20 分钟内（如在第 19 分钟时）访问过 session，那么，将重新计算 session 的生命周期。关机会造成 session 生命周期的结束，但是对 cookie 没有影响
+4. 访问范围cookie 为多个用户浏览器共享；session 为一个用户浏览器独享
+
+# 八、**GET 和 POST 请求的区别**
+
+- GET 参数通过 url 传递，POST 放在 body 中。（http 协议规定，url 在请求头中，所以大小限制很小）
+- GET 请求在 url 中传递的参数是有长度限制的，而 POST 没有。原因见上↑↑↑
+- GET 在浏览器回退时是无害的，而 POST 会再次提交请求
+- GET 请求会被浏览器主动 cache，而 POST 不会，除非手动设置
+- GET 比 POST 更不安全，因为参数直接暴露在 url 中，所以不能用来传递敏感信息
+- 对参数的数据类型，GET 只接受 ASCII字符，而 POST 没有限制
+- GET 请求只能进行 url(x-www-form-urlencoded)编码，而 POST 支持多种编码方式
+- **GET 产生一个 TCP 数据包；POST 产生两个 TCP 数据包**。对于 GET 方式的请求，浏览器会把 http 的 header 和 data 一并发送出去，服务器响应200（返回数据）。而对于 POST，浏览器先发送 header，服务器响应100 continue，浏览器再发送 data，服务器响应200 ok（返回数据）
+
+# 九、options预检请求
+
+参考链接：[https://blog.csdn.net/weixin_45284354/article/details/112485880](https://blog.csdn.net/weixin_45284354/article/details/112485880)
+
+**含义：**
+
+options是预检请求，对`复杂跨域请求`，在真正的请求发送出去之前，浏览器会先发送一个options请求`向服务询问此接口是否允许访问`。
+
+**作用：**
+
+1. 试探服务器响应是否正确，检查服务器的`性能和安全性`。
+2. `获取服务器支持的HTTP请求方法`；也是黑客经常使用的方法。
+
+**三种方式会导致这种现象:**
+     1. 请求的方法不是GET/HEAD/POST，还有PUT,DELETE
+
+2. POST请求的Content-Type并非application/x-www-form-urlencoded, multipart/form-data, 或text/plain
+
+3. 请求设置了自定义的header字段，我们的Content-Type绝大多数是application/json
+
+# 十、URI和URL、URN的区别
+
+URI: Uniform Resource Identififier 指的是统一资源**标识符，**一种抽象的定义
+
+URL: Uniform Resource Location 指的是统一资源**定位符**
+
+URN ：统一资源名称
+
+URI 指的是统一资源标识符，用唯一的标识来确定一个资源，它是一种抽象的定义，也就是说，不管使用什么方法来定义，只要能唯 一的标识一个资源，就可以称为 URI。
+
+URL 指的是统一资源定位符，URN 指的是统一资源名称。URL 和 URN 是 URI 的子集，URL 可以理解为使用地址来标识资源
+
+URL包含（ 协议 IP 域名 端口 目录  文件名）
+
+[https://www.bilibili.com：8081/video/BV1Pz411879y](https://www.bilibili.com/video/BV1Pz411879y)
+
+### 拆解URL
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/68d748af-cde2-4bd1-ab3d-670275545aba/Untitled.png)
+
+# 十一、介绍下304的过程？
+
+参考地址：[https://www.cnblogs.com/chenwenhao/p/11267238.html#_label9](https://www.cnblogs.com/chenwenhao/p/11267238.html#_label9)
+
+a. 浏览器请求资源时首先命中资源的Expires过期时间 和 Cache-Control缓存控制，Expires 受限于本地时间，如果修改了本地时间，可能会造成缓存失效，可以通过Cache-control: max-age指定最大生命周期，状态仍然返回200，但不会请求数据，在浏览器中能明显看到from cache（从缓存中读取）字样。
+
+b. 强制缓存失效，进入协商缓存阶段，首先验证ETag，ETag可以保证每一个资源是唯一的，资源变化都会导致ETag变化。服务器根据客户端上送的If-None-Match值来判断是否命中缓存。
+
+c. 协商缓存Last-Modify/If-Modify-Since阶段，客户端第一次请求资源时，服务服返回的header中会加上Last-Modify，Last-modify是一个时间标识该资源的最后修改时间。再次请求该资源时，request的请求头中会包含If-Modify-Since，该值为缓存之前返回的Last-Modify。服务器收到If-Modify-Since后，根据资源的最后修改时间判断是否命中缓存。
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5341f8c7-6ec2-41ed-9fcb-148af2f8936b/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5341f8c7-6ec2-41ed-9fcb-148af2f8936b/Untitled.png)
+
+# 十二、Resful API
+
+它是一种新的API设计方法，传统API把每个url当做一个**功能**，Restful API设计是把每个url当做一个**唯一的资源**
+
+做法：尽量不要在url中做参数，用method来表示操作类型
+
+**传统api设计：**
+
+```jsx
+get :  api/get-blog
+post : api/update-blog?id=100
+```
+
+**Resful API 设计：**
+
+```jsx
+get :  api/blog
+post : api/blog/100
+delete : api/blog/100
+
+```
