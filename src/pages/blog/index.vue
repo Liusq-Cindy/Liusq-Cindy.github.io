@@ -45,6 +45,7 @@ export default {
  height: calc(100% - 56px);
  width: 100%;
  display: flex;
+ // mark-down内容的自定义样式
  .mk-content {
    text-align: left;
    padding: 20px;

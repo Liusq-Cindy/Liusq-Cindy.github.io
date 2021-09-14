@@ -63,6 +63,17 @@ const webpackDemo = () => import('./perform-tools/webpackDemo.md')
 const webFlow = () => import('./perform-tools/webFlow.md')
 const echart = () => import('./perform-tools/echart.md')
 const linux = () => import('./perform-tools/linux.md')
+// VUE部分
+const vueQA1 = () => import('./vue/vueQA1.md')
+const vueQA2 = () => import('./vue/vueQA2.md')
+const vuePrinciple = () => import('./vue/vuePrinciple.md')
+const vueCode = () => import('./vue/vueCode.md')
+const vueByhand = () => import('./vue/vueByhand.md')
+const vueCircle = () => import('./vue/vueCircle.md')
+const vueConnect = () => import('./vue/vueConnect.md')
+const VuexBasic = () => import('./vue/VuexBasic.md')
+const vueRouter = () => import('./vue/vueRouter.md')
+const vueSsr = () => import('./vue/vueSsr.md')
 
 export default {
   name: 'artical',
@@ -123,7 +134,18 @@ export default {
     webpackDemo,
     webFlow,
     echart,
-    linux
+    linux,
+    // vue系列
+    vueQA1,
+    vueQA2,
+    vuePrinciple,
+    vueCode,
+    vueByhand,
+    vueCircle,
+    vueConnect,
+    VuexBasic,
+    vueRouter,
+    vueSsr
   },
   methods: {
     getBlogComponent () {

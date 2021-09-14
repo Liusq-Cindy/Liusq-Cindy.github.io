@@ -8,7 +8,8 @@ export default {
     2: {'title': 'CSS', 'logo': 'el-icon-shopping-bag-2'},
     3: {'title': 'JS', 'logo': 'el-icon-magic-stick'},
     4: {'title': '浏览器及http网络', 'logo': 'el-icon-umbrella'},
-    5: {'title': '前端性能工具及工程化', 'logo': 'el-icon-setting'}
+    5: {'title': '前端性能工具及工程化', 'logo': 'el-icon-setting'},
+    6: {'title': 'VUE', 'logo': 'el-icon-attract'}
   },
   blogList: [
     // 基础类
@@ -67,6 +68,17 @@ export default {
     { blogTitle: 'webpack的Demo', blogTheme: 5, blogIndex: 5, blogPath: '/blog/artical/webpackDemo', blogName: 'webpackDemo' },
     { blogTitle: '前端项目开发测试发布流程', blogTheme: 5, blogIndex: 6, blogPath: '/blog/artical/webFlow', blogName: 'webFlow' },
     { blogTitle: '可视化工具echats及antv', blogTheme: 5, blogIndex: 7, blogPath: '/blog/artical/echart', blogName: 'echart' },
-    { blogTitle: '了解linux命令与前端服务', blogTheme: 5, blogIndex: 8, blogPath: '/blog/artical/linux', blogName: 'linux' }
+    { blogTitle: '了解linux命令与前端服务', blogTheme: 5, blogIndex: 8, blogPath: '/blog/artical/linux', blogName: 'linux' },
+    // Vue相关
+    { blogTitle: 'Vue常见知识点QA-定义', blogTheme: 6, blogIndex: 0, blogPath: '/blog/artical/vueQA1', blogName: 'vueQA1' },
+    { blogTitle: 'Vue常见知识点QA-应用', blogTheme: 6, blogIndex: 1, blogPath: '/blog/artical/vueQA2', blogName: 'vueQA2' },
+    { blogTitle: 'Vue原理介绍', blogTheme: 6, blogIndex: 2, blogPath: '/blog/artical/vuePrinciple', blogName: 'vuePrinciple' },
+    { blogTitle: 'Vue源码概念理解', blogTheme: 6, blogIndex: 3, blogPath: '/blog/artical/vueCode', blogName: 'vueCode' },
+    { blogTitle: 'Vue手写一个响应式框架', blogTheme: 6, blogIndex: 4, blogPath: '/blog/artical/vueByhand', blogName: 'vueByhand' },
+    { blogTitle: 'Vue生命周期', blogTheme: 6, blogIndex: 5, blogPath: '/blog/artical/vueCircle', blogName: 'vueCircle' },
+    { blogTitle: 'Vue组件间通信', blogTheme: 6, blogIndex: 6, blogPath: '/blog/artical/vueConnect', blogName: 'vueConnect' },
+    { blogTitle: 'Vuex基础', blogTheme: 6, blogIndex: 7, blogPath: '/blog/artical/VuexBasic', blogName: 'VuexBasic' },
+    { blogTitle: 'Vue-router理解', blogTheme: 6, blogIndex: 8, blogPath: '/blog/artical/vueRouter', blogName: 'vueRouter' },
+    { blogTitle: 'Vue-SSR基础', blogTheme: 6, blogIndex: 9, blogPath: '/blog/artical/vueSsr', blogName: 'vueSsr' }
   ]
 }
