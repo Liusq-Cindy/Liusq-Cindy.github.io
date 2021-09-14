@@ -7,62 +7,62 @@
 
 <script>
 // 基础综述部分
-import blogbuild from './basic/blogbuild.md'
-import youya from './basic/youya.md'
-import webside from './basic/webside.md'
+const blogbuild = () => import('./basic/blogbuild.md')
+const youya = () => import('./basic/youya.md')
+const webside = () => import('./basic/webside.md')
 // html部分
-import basicTag from './html/basicTag.md'
-import basicQA from './html/basicQA.md'
-import html5 from './html/html5.md'
-import vDom from './html/vDom.md'
-import testHtml from './html/test-html.md'
+const basicTag = () => import('./html/basicTag.md')
+const basicQA = () => import('./html/basicQA.md')
+const html5 = () => import('./html/html5.md')
+const vDom = () => import('./html/vDom.md')
+const testHtml = () => import('./html/test-html.md')
 // css部分
-import cssBasicQA1 from './css/cssBasicQA1.md'
-import cssBasicQA2 from './css/cssBasicQA2.md'
-import cssApply from './css/cssApply.md'
-import css3 from './css/css3.md'
-import testCss from './css/test-css.md'
+const cssBasicQA1 = () => import('./css/cssBasicQA1.md')
+const cssBasicQA2 = () => import('./css/cssBasicQA2.md')
+const cssApply = () => import('./css/cssApply.md')
+const css3 = () => import('./css/css3.md')
+const testCss = () => import('./css/test-css.md')
 // js部分
-import jsQA1 from './js/jsQA1.md'
-import jsQA2 from './js/jsQA2.md'
-import object from './js/object.md'
-import constructor from './js/constructor.md'
-import thisJs from './js/thisJs.md'
-import arrayApi from './js/arrayApi.md'
-import stringApi from './js/stringApi.md'
-import throttle from './js/throttle.md'
-import eventloop from './js/eventloop.md'
-import jsDesign from './js/jsDesign.md'
-import jsFunc from './js/jsFunc.md'
-import reg from './js/reg.md'
-import codeChange from './js/codeChange.md'
-import promise from './js/promise.md'
-import ts from './js/ts.md'
-import es6 from './js/es6.md'
-import jsByhand1 from './js/jsByhand1.md'
-import jsByhand2 from './js/jsByhand2.md'
-import lodashGet from './js/lodashGet.md'
-import testJs from './js/test-js.md'
+const jsQA1 = () => import('./js/jsQA1.md')
+const jsQA2 = () => import('./js/jsQA2.md')
+const objectProto = () => import('./js/object-proto.md')
+const constructor = () => import('./js/constructor.md')
+const thisJs = () => import('./js/thisJs.md')
+const arrayApi = () => import('./js/arrayApi.md')
+const stringApi = () => import('./js/stringApi.md')
+const throttle = () => import('./js/throttle.md')
+const eventloop = () => import('./js/eventloop.md')
+const jsDesign = () => import('./js/jsDesign.md')
+const jsFunc = () => import('./js/jsFunc.md')
+const reg = () => import('./js/reg.md')
+const codeChange = () => import('./js/codeChange.md')
+const promise = () => import('./js/promise.md')
+const ts = () => import('./js/ts.md')
+const es6 = () => import('./js/es6.md')
+const jsByhand1 = () => import('./js/jsByhand1.md')
+const jsByhand2 = () => import('./js/jsByhand2.md')
+const lodashGet = () => import('./js/lodashGet.md')
+const testJs = () => import('./js/test-js.md')
 // chrome及http部分
-import chromeBasic from './chrome-http/chromeBasic.md'
-import chromeCache from './chrome-http/chromeCache.md'
-import chromePaint from './chrome-http/chromePaint.md'
-import chromeQA from './chrome-http/chromeQA.md'
-import httpDoc from './chrome-http/httpDoc.md'
-import httpHistory from './chrome-http/httpHistory.md'
-import testHttp from './chrome-http/test-http.md'
-import webSafe from './chrome-http/webSafe.md'
-import websocket from './chrome-http/websocket.md'
+const chromeBasic = () => import('./chrome-http/chromeBasic.md')
+const chromeCache = () => import('./chrome-http/chromeCache.md')
+const chromePaint = () => import('./chrome-http/chromePaint.md')
+const chromeQA = () => import('./chrome-http/chromeQA.md')
+const httpDoc = () => import('./chrome-http/httpDoc.md')
+const httpHistory = () => import('./chrome-http/httpHistory.md')
+const testHttp = () => import('./chrome-http/test-http.md')
+const webSafe = () => import('./chrome-http/webSafe.md')
+const websocket = () => import('./chrome-http/websocket.md')
 // 性能工具及系统工程
-import webOptimize from './perform-tools/webOptimize.md'
-import imgLazyload from './perform-tools/imgLazyload.md'
-import git from './perform-tools/git.md'
-import codeDebugger from './perform-tools/codeDebugger.md'
-import webpackBasic from './perform-tools/webpackBasic.md'
-import webpackDemo from './perform-tools/webpackDemo.md'
-import webFlow from './perform-tools/webFlow.md'
-import echart from './perform-tools/echart.md'
-import linux from './perform-tools/linux.md'
+const webOptimize = () => import('./perform-tools/webOptimize.md')
+const imgLazyload = () => import('./perform-tools/imgLazyload.md')
+const git = () => import('./perform-tools/git.md')
+const codeDebugger = () => import('./perform-tools/codeDebugger.md')
+const webpackBasic = () => import('./perform-tools/webpackBasic.md')
+const webpackDemo = () => import('./perform-tools/webpackDemo.md')
+const webFlow = () => import('./perform-tools/webFlow.md')
+const echart = () => import('./perform-tools/echart.md')
+const linux = () => import('./perform-tools/linux.md')
 
 export default {
   name: 'artical',
@@ -86,7 +86,7 @@ export default {
     // js系列
     jsQA1,
     jsQA2,
-    object,
+    objectProto,
     constructor,
     thisJs,
     arrayApi,
@@ -127,7 +127,7 @@ export default {
   },
   methods: {
     getBlogComponent () {
-      return this.$route.params.articalName
+      return this.$route.params.articalName || 'blogbuild'
     }
   }
 }

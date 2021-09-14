@@ -30,7 +30,7 @@ export default {
     // js类
     { blogTitle: 'js基础知识点QA1', blogTheme: 3, blogIndex: 0, blogPath: '/blog/artical/jsQA1', blogName: 'jsQA1' },
     { blogTitle: 'js基础知识点QA2', blogTheme: 3, blogIndex: 1, blogPath: '/blog/artical/jsQA2', blogName: 'jsQA2' },
-    { blogTitle: '对象、原型', blogTheme: 3, blogIndex: 2, blogPath: '/blog/artical/object', blogName: 'object' },
+    { blogTitle: '对象、原型', blogTheme: 3, blogIndex: 2, blogPath: '/blog/artical/object-proto', blogName: 'objectProto' },
     { blogTitle: '构造函数、原型链、继承', blogTheme: 3, blogIndex: 3, blogPath: '/blog/artical/constructor', blogName: 'constructor' },
     { blogTitle: 'this的理解', blogTheme: 3, blogIndex: 4, blogPath: '/blog/artical/thisJs', blogName: 'thisJs' },
     { blogTitle: '数组API', blogTheme: 3, blogIndex: 5, blogPath: '/blog/artical/arrayApi', blogName: 'arrayApi' },

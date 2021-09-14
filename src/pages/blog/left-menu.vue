@@ -95,12 +95,14 @@ export default {
  .leftmenu-list {
   position: relative;
   padding-top: 8px;
-  height: calc(100% - 8px);
+  padding-bottom: 8px;
+  height: calc(100% - 16px);
   /deep/.el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 240px;
   }
   /deep/.el-menu {
-   height: 100%;
+    height: 100%;
+    overflow-y: scroll;
   }
   /deep/.el-submenu__title{
     border-top: 1px solid #f1f1f1;
