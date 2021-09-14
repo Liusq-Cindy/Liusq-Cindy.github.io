@@ -9,7 +9,7 @@
       @close="handleClose"
       :collapse="isCollapse">
       <el-submenu v-for="(item, key ) in Blog_List_Map" :key="key" :index="key">
-        <template slot="title">
+        <template slot="title" class="tab-title">
           <i :class="item.logo"></i>
           <span>{{item.title}}</span>
         </template>
@@ -91,16 +91,20 @@ export default {
 .page-blog-leftmenu {
  height: 100%;
  display: flex;
- max-width: 200px;
+ max-width: 240px;
  .leftmenu-list {
   position: relative;
   padding-top: 8px;
   height: calc(100% - 8px);
   /deep/.el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
+    width: 240px;
   }
   /deep/.el-menu {
    height: 100%;
+  }
+  /deep/.el-submenu__title{
+    border-top: 1px solid #f1f1f1;
+    background: linear-gradient(#f1f1f1,#fefdff);
   }
   .menu-collapse {
     position: absolute;

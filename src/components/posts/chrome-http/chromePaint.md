@@ -1,0 +1,199 @@
+参考文章：
+
+[从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理](https://juejin.cn/post/6844903553795014663)
+
+# **一、区分进程和线程**
+
+**可以打开电脑的任务管理器查看**
+
+- 进程是一个工厂，工厂有它的独立资源
+- 工厂之间相互独立
+- 线程是工厂中的工人，多个工人协作完成任务
+- 工厂内有一个或多个工人
+- 工人之间共享空间
+- 工厂的资源 -> 系统分配的内存（独立的一块内存）
+- 工厂之间的相互独立 -> 进程之间相互独立
+- 多个工人协作完成任务 -> 多个线程在进程中协作完成任务
+- 工厂内有一个或多个工人 -> 一个进程由一个或多个线程组成
+- 工人之间共享空间 -> 同一进程下的各个线程之间共享程序的内存空间（包括代码段、数据集、堆等）
+- 进程是cpu资源分配的最小单位（是能拥有资源和独立运行的最小单位）
+- 线程是cpu调度的最小单位（线程是建立在进程的基础上的一次程序运行单位，一个进程中可以有多个线程）
+
+# **二、浏览器是多进程的**
+
+- 浏览器是多进程的
+- 浏览器之所以能够运行，是因为系统给它的进程分配了资源（cpu、内存）
+- 简单点理解，每打开一个Tab页，就相当于创建了一个独立的浏览器进程。
+
+## **A、浏览器是包含哪些主要进程？**
+
+1、Browser进程：浏览器的主进程（负责协调、主控），只有一个。作用有
+
+- 负责浏览器界面显示，与用户交互。如前进，后退等
+- 负责各个页面的管理，创建和销毁其他进程
+- 将Renderer进程得到的内存中的Bitmap，绘制到用户界面上
+- 网络资源的管理，下载等
+
+2、第三方插件进程：每种类型的插件对应一个进程，仅当使用该插件时才创建
+
+3、GPU进程：最多一个，用于3D绘制等
+
+4、浏览器渲染进程（浏览器内核）（Renderer进程，内部是多线程的）：默认每个Tab页面一个进程，互不影响。主要作用为
+
+- 页面渲染，脚本执行，事件处理等
+
+## **B、重点-浏览器渲染进程（浏览器内核）**
+
+浏览器的渲染进程是多线程的，主要包括：
+
+**1、GUI渲染线程（和js引擎线程互斥，只能执行一个）**
+
+- 负责渲染浏览器界面，解析HTML，CSS，构建DOM树和RenderObject树，布局和绘制等。
+- 当界面需要重绘（Repaint）或由于某种操作引发回流(reflow)时，该线程就会执行
+- 注意，**GUI渲染线程与JS引擎线程是互斥的**，当JS引擎执行时GUI线程会被挂起（相当于被冻结了），GUI更新会被保存在一个队列中**等到JS引擎空闲时**立即被执行。
+
+**2、JS引擎线程（核心线程）**
+
+- 也称为JS内核，负责处理Javascript脚本程序。（例如V8引擎）
+- JS引擎线程负责解析Javascript脚本，运行代码。
+- JS引擎一直等待着任务队列中任务的到来，然后加以处理，一个Tab页（renderer进程）中无论什么时候都只有一个JS线程在运行JS程序
+- 同样注意，**GUI渲染线程与JS引擎线程是互斥的**，所以如果JS执行的时间过长，这样就会造成页面的渲染不连贯，导致页面渲染加载阻塞。
+
+**3、事件触发线程（事件触发后，放置队尾等js引擎线程处理）**
+
+- 归属于浏览器而不是JS引擎，用来控制事件循环（可以理解，JS引擎自己都忙不过来，需要浏览器另开线程协助）
+- 当JS引擎执行代码块如setTimeOut时（也可来自浏览器内核的其他线程,如鼠标点击、AJAX异步请求等），会将对应任务添加到事件线程中
+- 当对应的事件符合触发条件被触发时，该线程会把事件添加到待处理队列的队尾，等待JS引擎的处理
+- 注意，由于JS的单线程关系，所以这些待处理队列中的事件都得排队等待JS引擎处理（当JS引擎空闲时才会去执行）
+
+**4、定时触发器线程（计时完成后，等js引擎线程处理）**
+
+- 传说中的setInterval与setTimeout所在线程
+- 浏览器定时计数器并不是由JavaScript引擎计数的,（因为JavaScript引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确）
+- 因此通过单独线程来计时并触发定时（计时完毕后，添加到事件队列中，等待JS引擎空闲后执行）
+- 注意，W3C在HTML标准中规定，规定要求setTimeout中低于4ms的时间间隔算为4ms。
+
+**5、异步http请求线程（有状态变更时，放置队列待JS引擎线程处理）**
+
+- 在XMLHttpRequest在连接后是通过浏览器新开一个线程请求
+- 将检测到状态变更时，如果设置有回调函数，异步线程就**产生状态变更事件**，将这个回调再放入事件队列中。再由JavaScript引擎执行。
+
+## **C、Brower进程和浏览器内核（Renderer进程）（包括上述那一堆线程的那个进程）的通信过程**
+
+自己总结了一张图
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e0c730ee-5e10-43c0-96c9-18728fbb4d2f/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e0c730ee-5e10-43c0-96c9-18728fbb4d2f/Untitled.png)
+
+# **三、简单梳理浏览器渲染流程**（简单版本）
+
+前提工作简略如下（可自行学习http请求那一类）
+
+这里有一篇原作者写的，从输入url到页面加载的过程整个知识体系的文章，非常值得一看：
+
+[从输入URL到页面加载的过程？如何由一道题完善自己的前端知识体系！](https://juejin.cn/post/6844903574535667719)
+
+- 浏览器输入url，浏览器主进程接管，开一个下载线程，
+
+然后进行 http请求（略去DNS查询，IP寻址等等操作），然后等待响应，获取内容，
+
+随后将内容通过RendererHost接口转交给Renderer进程
+
+- 浏览器渲染流程开始
+
+### **A、浏览器器内核拿到内容后，渲染大概可以划分成以下几个步骤：**
+
+1. 解析html建立dom树
+2. 解析css构建render树（将CSS代码解析成树形的数据结构，然后结合DOM合并成render树）
+3. 布局render树（Layout/reflow），负责各元素尺寸、位置的计算
+4. 绘制render树（paint），绘制页面像素信息
+5. 浏览器会将各层的信息发送给GPU，GPU会将各层合成（composite），显示在屏幕上。
+
+渲染完毕后就是load事件了，之后就是自己的JS逻辑处理了
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1bec8311-3b7f-43be-add1-21ec25d46ea8/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1bec8311-3b7f-43be-add1-21ec25d46ea8/Untitled.png)
+
+**load事件与DOMContentLoaded事件的先后**
+
+`DOMContentLoaded -> load`
+
+**css加载是否会阻塞dom树渲染？**
+
+**css是由单独的下载线程异步下载的**
+
+- css加载不会阻塞DOM树解析（异步加载时DOM照常构建）
+- 但会阻塞render树渲染（渲染时需等css加载完毕，因为render树需要css信息）
+
+**B、普通图层和复合图层**
+
+**（TODO:不太清楚，建议后续再巩固）**
+
+# **四、从Event Loop谈JS的运行机制**
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/33ccb3af-3d76-4d44-b2bd-083dc008bff7/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/33ccb3af-3d76-4d44-b2bd-083dc008bff7/Untitled.png)
+
+****（即上述浏览器内核内各个线程是如何协同运作的）****
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/92415e79-fbbc-48ca-aeea-9c1e85ece5a4/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/92415e79-fbbc-48ca-aeea-9c1e85ece5a4/Untitled.png)
+
+（此处可参考前面的笔记—事件循环）
+
+[事件循环（栈与堆、宏任务、微任务）](https://www.notion.so/dad05d8bc41947daab6b916f0ba04665)
+
+1、JS分为同步任务和异步任务
+
+2、同步任务都在主线程上执行，形成一个执行栈
+
+3、主线程之外，**事件触发线程**管理着一个任务队列，只要异步任务有了运行结果，就在任务队列之中放置一个事件。
+
+4、一旦执行栈中的所有同步任务执行完毕（此时JS引擎空闲），系统就会读取任务队列，将可运行的异步任务添加到可执行栈中，开始执行。
+
+## **A、JS引擎线程和事件触发线程**
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f4249614-043e-41c2-adf6-d1b4d0b1f2f0/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f4249614-043e-41c2-adf6-d1b4d0b1f2f0/Untitled.png)
+
+上图大致描述就是：
+
+- 主线程运行时会产生执行栈， 栈中的代码调用某些api时，它们会在事件队列中添加各种事件（当满足触发条件后，如ajax请求完毕）
+- 而栈中的代码执行完毕，就会读取事件队列中的事件，去执行那些回调
+- 如此循环
+- 注意，总是要等待栈中的代码执行完毕后才会去读取事件队列中的事件
+
+## **B、单独说说定时器**
+
+上述事件循环机制的核心是：JS引擎线程和事件触发线程；下面说定时器线程
+
+**当使用setTimeout或setInterval时**，它需要定时器线程计时，计时完成后就会将特定的事件推入事件队列中。
+
+W3C在HTML标准中规定，规定要求setTimeout中低于4ms的时间间隔算为4ms。 (不过也有一说是不同浏览器有不同的最小时间设定)
+
+### **setTimeout而不是setInterval**
+
+**区别：**
+
+前者是，计时到后，就会推送去执行，执行一段时间后，才开始下一次计时
+
+后者是，间隔一段时间，不断推送去执行，可能会导致累计效应（目前有优化，但还是有很多其他问题）
+
+# **五、事件循环进阶：macrotask与microtask**
+
+进一步，JS中分为两种任务类型：**macrotask**宏任务**和microtask**微任务，在ECMAScript中，microtask称为jobs，macrotask可称为task
+
+浏览器为了能够使得JS内部task与DOM任务能够有序的执行，会在一个task执行结束后，在下一个 task 执行开始前，对页面进行重新渲染 （task->渲染->task->...）
+
+**补充：在node环境下，process.nextTick的优先级高于Promise**，也就是可以简单理解为：在宏任务结束后会先执行微任务队列中的nextTickQueue部分，然后才会执行微任务中的Promise部分。
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d909f8ec-cc20-445a-b70c-9b40d4aaf8c4/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d909f8ec-cc20-445a-b70c-9b40d4aaf8c4/Untitled.png)
+
+### 总结下运行机制：
+
+- 执行一个宏任务（栈中没有就从事件队列中获取）
+- 执行过程中如果遇到微任务，就将它添加到微任务的任务队列中
+- 宏任务执行完毕后，立即执行当前微任务队列中的所有微任务（依次执行）
+- 当前宏任务执行完毕，开始检查渲染，然后GUI线程接管渲染
+- 渲染完毕后，JS线程继续接管，开始下一个宏任务（从事件队列中获取）
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f1650462-baff-4435-a17c-24b51677b3c8/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f1650462-baff-4435-a17c-24b51677b3c8/Untitled.png)
+
+更多可见：
+
+[浏览器的微任务MicroTask和宏任务MacroTask_caoliangya520的博客-CSDN博客_浏览器微任务和宏任务](https://blog.csdn.net/weixin_45494667/article/details/107296746)

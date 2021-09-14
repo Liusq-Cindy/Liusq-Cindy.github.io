@@ -7,7 +7,7 @@ export default {
     1: {'title': 'HTML', 'logo': 'el-icon-tickets'},
     2: {'title': 'CSS', 'logo': 'el-icon-shopping-bag-2'},
     3: {'title': 'JS', 'logo': 'el-icon-magic-stick'},
-    4: {'title': 'Vue', 'logo': 'el-icon-umbrella'}
+    4: {'title': '浏览器及http网络', 'logo': 'el-icon-umbrella'}
   },
   blogList: [
     // 基础类
@@ -46,6 +46,17 @@ export default {
     { blogTitle: 'JS手写系列1', blogTheme: 3, blogIndex: 16, blogPath: '/blog/artical/jsByhand1', blogName: 'jsByhand1' },
     { blogTitle: 'JS手写系列2', blogTheme: 3, blogIndex: 17, blogPath: '/blog/artical/jsByhand2', blogName: 'jsByhand2' },
     { blogTitle: 'lodash中的get方法分析', blogTheme: 3, blogIndex: 18, blogPath: '/blog/artical/lodashGet', blogName: 'lodashGet' },
-    { blogTitle: 'JS常见面试题汇总', blogTheme: 3, blogIndex: 19, blogPath: '/blog/artical/test-js', blogName: 'testJs' }
+    { blogTitle: 'JS常见面试题汇总', blogTheme: 3, blogIndex: 19, blogPath: '/blog/artical/test-js', blogName: 'testJs' },
+    // 浏览器及http网络
+    { blogTitle: '浏览器及http常见问题QA', blogTheme: 4, blogIndex: 0, blogPath: '/blog/artical/chromeQA', blogName: 'chromeQA' },
+    { blogTitle: '浏览器基础', blogTheme: 4, blogIndex: 1, blogPath: '/blog/artical/chromeBasic', blogName: 'chromeBasic' },
+    { blogTitle: '浏览器渲染', blogTheme: 4, blogIndex: 2, blogPath: '/blog/artical/chromePaint', blogName: 'chromePaint' },
+    { blogTitle: '浏览器缓存', blogTheme: 4, blogIndex: 3, blogPath: '/blog/artical/chromeCache', blogName: 'chromeCache' },
+    { blogTitle: 'http发展历程', blogTheme: 4, blogIndex: 4, blogPath: '/blog/artical/httpHistory', blogName: 'httpHistory' },
+    { blogTitle: 'http协议', blogTheme: 4, blogIndex: 5, blogPath: '/blog/artical/httpDoc', blogName: 'httpDoc' },
+    { blogTitle: '前端安全', blogTheme: 4, blogIndex: 6, blogPath: '/blog/artical/webSafe', blogName: 'webSafe' },
+    { blogTitle: '了解websocket', blogTheme: 4, blogIndex: 7, blogPath: '/blog/artical/websocket', blogName: 'websocket' },
+    { blogTitle: '浏览器及http常见面试题汇总', blogTheme: 4, blogIndex: 8, blogPath: '/blog/artical/test-http', blogName: 'testHttp' }
+
   ]
 }

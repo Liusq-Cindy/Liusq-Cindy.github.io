@@ -43,6 +43,16 @@ import jsByhand1 from './js/jsByhand1.md'
 import jsByhand2 from './js/jsByhand2.md'
 import lodashGet from './js/lodashGet.md'
 import testJs from './js/test-js.md'
+// chrome及http部分
+import chromeBasic from './chrome-http/chromeBasic.md'
+import chromeCache from './chrome-http/chromeCache.md'
+import chromePaint from './chrome-http/chromePaint.md'
+import chromeQA from './chrome-http/chromeQA.md'
+import httpDoc from './chrome-http/httpDoc.md'
+import httpHistory from './chrome-http/httpHistory.md'
+import testHttp from './chrome-http/test-http.md'
+import webSafe from './chrome-http/webSafe.md'
+import websocket from './chrome-http/websocket.md'
 
 export default {
   name: 'artical',
@@ -83,7 +93,17 @@ export default {
     jsByhand1,
     jsByhand2,
     lodashGet,
-    testJs
+    testJs,
+    // chrome及http部分
+    chromeBasic,
+    chromeCache,
+    chromePaint,
+    chromeQA,
+    httpDoc,
+    httpHistory,
+    testHttp,
+    webSafe,
+    websocket
   },
   methods: {
     getBlogComponent () {
