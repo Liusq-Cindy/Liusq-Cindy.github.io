@@ -7,7 +7,8 @@ export default {
     1: {'title': 'HTML', 'logo': 'el-icon-tickets'},
     2: {'title': 'CSS', 'logo': 'el-icon-shopping-bag-2'},
     3: {'title': 'JS', 'logo': 'el-icon-magic-stick'},
-    4: {'title': '浏览器及http网络', 'logo': 'el-icon-umbrella'}
+    4: {'title': '浏览器及http网络', 'logo': 'el-icon-umbrella'},
+    5: {'title': '前端性能工具及工程化', 'logo': 'el-icon-setting'}
   },
   blogList: [
     // 基础类
@@ -56,7 +57,16 @@ export default {
     { blogTitle: 'http协议', blogTheme: 4, blogIndex: 5, blogPath: '/blog/artical/httpDoc', blogName: 'httpDoc' },
     { blogTitle: '前端安全', blogTheme: 4, blogIndex: 6, blogPath: '/blog/artical/webSafe', blogName: 'webSafe' },
     { blogTitle: '了解websocket', blogTheme: 4, blogIndex: 7, blogPath: '/blog/artical/websocket', blogName: 'websocket' },
-    { blogTitle: '浏览器及http常见面试题汇总', blogTheme: 4, blogIndex: 8, blogPath: '/blog/artical/test-http', blogName: 'testHttp' }
-
+    { blogTitle: '浏览器及http常见面试题汇总', blogTheme: 4, blogIndex: 8, blogPath: '/blog/artical/test-http', blogName: 'testHttp' },
+    // 前端性能工具及工程化
+    { blogTitle: '前端性能优化', blogTheme: 5, blogIndex: 0, blogPath: '/blog/artical/webOptimize', blogName: 'webOptimize' },
+    { blogTitle: '图片懒加载', blogTheme: 5, blogIndex: 1, blogPath: '/blog/artical/imgLazyload', blogName: 'imgLazyload' },
+    { blogTitle: 'git常用命令', blogTheme: 5, blogIndex: 2, blogPath: '/blog/artical/git', blogName: 'git' },
+    { blogTitle: '前端代码调试', blogTheme: 5, blogIndex: 3, blogPath: '/blog/artical/codeDebugger', blogName: 'codeDebugger' },
+    { blogTitle: 'webpack基础知识', blogTheme: 5, blogIndex: 4, blogPath: '/blog/artical/webpackBasic', blogName: 'webpackBasic' },
+    { blogTitle: 'webpack的Demo', blogTheme: 5, blogIndex: 5, blogPath: '/blog/artical/webpackDemo', blogName: 'webpackDemo' },
+    { blogTitle: '前端项目开发测试发布流程', blogTheme: 5, blogIndex: 6, blogPath: '/blog/artical/webFlow', blogName: 'webFlow' },
+    { blogTitle: '可视化工具echats及antv', blogTheme: 5, blogIndex: 7, blogPath: '/blog/artical/echart', blogName: 'echart' },
+    { blogTitle: '了解linux命令与前端服务', blogTheme: 5, blogIndex: 8, blogPath: '/blog/artical/linux', blogName: 'linux' }
   ]
 }

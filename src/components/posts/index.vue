@@ -53,6 +53,16 @@ import httpHistory from './chrome-http/httpHistory.md'
 import testHttp from './chrome-http/test-http.md'
 import webSafe from './chrome-http/webSafe.md'
 import websocket from './chrome-http/websocket.md'
+// 性能工具及系统工程
+import webOptimize from './perform-tools/webOptimize.md'
+import imgLazyload from './perform-tools/imgLazyload.md'
+import git from './perform-tools/git.md'
+import codeDebugger from './perform-tools/codeDebugger.md'
+import webpackBasic from './perform-tools/webpackBasic.md'
+import webpackDemo from './perform-tools/webpackDemo.md'
+import webFlow from './perform-tools/webFlow.md'
+import echart from './perform-tools/echart.md'
+import linux from './perform-tools/linux.md'
 
 export default {
   name: 'artical',
@@ -103,7 +113,17 @@ export default {
     httpHistory,
     testHttp,
     webSafe,
-    websocket
+    websocket,
+    // 性能工具及系统工程
+    webOptimize,
+    imgLazyload,
+    git,
+    codeDebugger,
+    webpackBasic,
+    webpackDemo,
+    webFlow,
+    echart,
+    linux
   },
   methods: {
     getBlogComponent () {
