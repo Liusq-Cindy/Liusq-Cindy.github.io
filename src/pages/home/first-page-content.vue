@@ -3,10 +3,10 @@
     <h1>{{ msg }}</h1>
     <h2>最新博客文章</h2>
     <ul class="blog-recommend">
-      <li @click="clickTopage('/blog/post/youya')">
+      <li @click="clickTopage('/blog/artical/youya')">
         如何将前端代码写的优雅？
       </li>
-      <li @click="clickTopage('/blog/post/blog-build')">
+      <li @click="clickTopage('/blog/artical/blogbuild')">
         如何搭建一个github个人博客？
       </li>
     </ul>
